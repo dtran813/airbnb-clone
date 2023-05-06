@@ -36,7 +36,7 @@ const Input: React.FC<InputProps> = ({
         id={id}
         type={type}
         disabled={disabled}
-        placeholder=" "
+        placeholder=" " // for placeholder animation
         {...register(id, { required })}
         className={`peer w-full p-4 pt-7 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
         ${formatPrice ? 'pl-9' : 'pl-4'}
