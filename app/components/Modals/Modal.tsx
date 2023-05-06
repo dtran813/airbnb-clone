@@ -74,15 +74,13 @@ const Modal: React.FC<ModalProps> = ({
               showModal
                 ? 'translate-y-0 opacity-100'
                 : 'translate-y-full opacity-0'
-            }`}
-          >
+            }`}>
             <div className="relative bg-white w-full h-full md:h-auto flex flex-col transform border-0 rounded-lg shadow-lg outline-none focus:outline-none">
               {/* HEADER */}
               <div className="relative flex justify-center items-center p-6 rounded-t border-b-[1px]">
                 <button
                   className="p-1 border-0 hover:opacity-70 transition absolute left-9"
-                  onClick={handleClose}
-                >
+                  onClick={handleClose}>
                   <IoMdClose size={18} />
                 </button>
                 <div className="text-lg font-semibold">{title}</div>
@@ -108,6 +106,7 @@ const Modal: React.FC<ModalProps> = ({
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
