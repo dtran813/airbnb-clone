@@ -1,12 +1,13 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { categories } from '../Navbar/Categories';
 import useRentModal from '@/app/hooks/useRentModal';
 import Modal from './Modal';
 import Heading from '../Heading';
-import { categories } from '../Navbar/Categories';
 import CategoryInput from '../Inputs/CategoryInput';
-import { FieldValues, useForm } from 'react-hook-form';
+import CountrySelect, { CountrySelectValue } from '../Inputs/CountrySelect';
 
 enum STEPS {
   CATEGORY = 0,
@@ -99,6 +100,18 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Where is your place located?"
+          subtitle="Help guests find you!"
+        />
+        <CountrySelect onChange={() => {}} />
+      </div>
+    );
+  }
+
   return (
     <Modal
       title="Airbnb your home!"
@@ -107,7 +120,7 @@ const RentModal = () => {
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       body={bodyContent}
     />
   );
