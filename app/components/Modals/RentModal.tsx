@@ -45,6 +45,7 @@ const RentModal = () => {
   });
 
   const category = watch('category');
+  const location = watch('location');
 
   // Since setValue doesn't re-render the component
   const setCustomValue = (id: string, value: any) => {
@@ -107,7 +108,10 @@ const RentModal = () => {
           title="Where is your place located?"
           subtitle="Help guests find you!"
         />
-        <CountrySelect onChange={() => {}} />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
       </div>
     );
   }
