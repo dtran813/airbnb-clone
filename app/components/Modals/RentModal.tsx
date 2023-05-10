@@ -7,7 +7,8 @@ import useRentModal from '@/app/hooks/useRentModal';
 import Modal from './Modal';
 import Heading from '../Heading';
 import CategoryInput from '../Inputs/CategoryInput';
-import CountrySelect, { CountrySelectValue } from '../Inputs/CountrySelect';
+import CountrySelect from '../Inputs/CountrySelect';
+import dynamic from 'next/dynamic';
 
 enum STEPS {
   CATEGORY = 0,
@@ -46,6 +47,12 @@ const RentModal = () => {
 
   const category = watch('category');
   const location = watch('location');
+
+  // Dynamic import for Map and will be updated based on location
+  const Map = useMemo(
+    () => dynamic(() => import('../Map'), { ssr: false }),
+    [location]
+  );
 
   // Since setValue doesn't re-render the component
   const setCustomValue = (id: string, value: any) => {
@@ -112,6 +119,7 @@ const RentModal = () => {
           value={location}
           onChange={(value) => setCustomValue('location', value)}
         />
+        <Map center={location?.latlng} />
       </div>
     );
   }
