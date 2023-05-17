@@ -7,6 +7,7 @@ import useCountries from '@/app/hooks/useCountry';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import HeartButton from '../HeartButton';
+import Button from '../Button';
 
 interface ListingCardProps {
   currentUser: User | null;
@@ -82,6 +83,24 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
       </div>
+      <p className="font-semibold text-lg">
+        {location?.region}, {location?.label}
+      </p>
+      <p className="font-light text-neutral-500">
+        {reservationDate || data.category}
+      </p>
+      <div className="flex flex-row items-center gap-1">
+        <p className="font-semibold">$ {price}</p>
+        {!reservation && <span className="font-light">night</span>}
+      </div>
+      {onAction && actionLabel && (
+        <Button
+          disabled={disabled}
+          small
+          label={actionLabel}
+          onClick={handleCancel}
+        />
+      )}
     </div>
   );
 };
