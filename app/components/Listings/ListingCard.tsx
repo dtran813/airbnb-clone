@@ -2,9 +2,11 @@
 
 import { Listing, Reservation, User } from '@prisma/client';
 import { useRouter } from 'next/navigation';
-import useCountries from '@/app/hooks/useCountry';
 import { useCallback, useMemo } from 'react';
+import useCountries from '@/app/hooks/useCountry';
 import { format } from 'date-fns';
+import Image from 'next/image';
+import HeartButton from '../HeartButton';
 
 interface ListingCardProps {
   currentUser: User | null;
@@ -62,7 +64,26 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, 'PP')} - ${format(end, 'PP')}`;
   }, [reservation]);
 
-  return <div>ListingCard</div>;
+  return (
+    <div
+      className="col-span-1 cursor-pointer group"
+      onClick={() => router.push(`/listings/${data.id}`)}
+    >
+      <div className="w-full flex flex-col gap-2">
+        <div className="relative w-full aspect-square rounded-xl overflow-hidden">
+          <Image
+            fill
+            src={data.imageSrc}
+            alt="Listing"
+            className="w-full h-full object-cover transition group-hover:scale-110"
+          />
+          <div className="absolute top-3 right-3">
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ListingCard;
