@@ -10,15 +10,13 @@ import Container from '../components/Container';
 import Heading from '../components/Heading';
 import ListingCard from '../components/Listings/ListingCard';
 
-interface TripsClientProps {
-  reservations: (Reservation & {
-    listing: Listing;
-  })[];
+interface PropertiesClientProps {
+  listings: Listing[];
   currentUser?: User | null;
 }
 
-const TripsClient: React.FC<TripsClientProps> = ({
-  reservations,
+const PropertiesClient: React.FC<PropertiesClientProps> = ({
+  listings,
   currentUser,
 }) => {
   const router = useRouter();
@@ -29,9 +27,9 @@ const TripsClient: React.FC<TripsClientProps> = ({
       setDeletingId(id);
 
       axios
-        .delete(`/api/reservations/${id}`)
+        .delete(`/api/listings/${id}`)
         .then(() => {
-          toast.success('Reservation cancelled!');
+          toast.success('Listing deleted!');
           router.refresh();
         })
         .catch((error) => {
@@ -46,19 +44,15 @@ const TripsClient: React.FC<TripsClientProps> = ({
 
   return (
     <Container>
-      <Heading
-        title="Trips"
-        subtitle="Where you've been and where you're going"
-      />
+      <Heading title="Properties" subtitle="List of your properties" />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gird-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => (
+        {listings.map((listing) => (
           <ListingCard
-            key={reservation.id}
-            data={reservation.listing}
-            reservation={reservation}
-            actionId={reservation.id}
-            actionLabel="Cancel reservation"
-            disabled={deletingId === reservation.id}
+            key={listing.id}
+            data={listing}
+            actionId={listing.id}
+            actionLabel="Delete property"
+            disabled={deletingId === listing.id}
             currentUser={currentUser}
             onAction={onCancel}
           />
@@ -68,4 +62,4 @@ const TripsClient: React.FC<TripsClientProps> = ({
   );
 };
 
-export default TripsClient;
+export default PropertiesClient;
