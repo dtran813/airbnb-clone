@@ -8,7 +8,7 @@ const TripsPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return <EmptyState title="Unauthorized" subtitle="Please login" />;
+    return <EmptyState title="Unauthorized" subtitle="Please login!" />;
   }
 
   const reservations = await getReservations({ userId: currentUser.id });
