@@ -10,9 +10,9 @@ import HeartButton from '../HeartButton';
 import Button from '../Button';
 
 interface ListingCardProps {
-  currentUser: User | null;
   data: Listing;
-  reservation: Reservation;
+  currentUser?: User | null;
+  reservation?: Reservation;
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
