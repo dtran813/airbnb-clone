@@ -10,6 +10,7 @@ import useLoginModal from '@/app/hooks/useLoginModal';
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/Listings/ListingHead';
 import ListingInfo from '@/app/components/Listings/ListingInfo';
+import ListingReservation from '@/app/components/Listings/ListingReservation';
 import { categories } from '@/app/components/Navbar/Categories';
 import { Listing, Reservation, User } from '@prisma/client';
 
@@ -122,6 +123,17 @@ const ListingClient: React.FC<ListingClientInterface> = ({
               bathroomCount={listing.bathroomCount}
               locationValue={listing.locationValue}
             />
+            <div className="mb-10 order-first md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                totalPrice={totalPrice}
+                dateRange={dateRange}
+                disabled={isLoading}
+                disabledDates={disabledDates}
+                onChangeDate={(value) => setDateRange(value)}
+                onSubmit={onCreateReservation}
+              />
+            </div>
           </div>
         </div>
       </div>
