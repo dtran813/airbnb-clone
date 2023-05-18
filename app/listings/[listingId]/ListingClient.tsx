@@ -6,14 +6,14 @@ import { Range } from 'react-date-range';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
-import useLoginModal from '@/app/hooks/useLoginModal';
+import { Listing, Reservation, User } from '@prisma/client';
 
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/Listings/ListingHead';
 import ListingInfo from '@/app/components/Listings/ListingInfo';
 import ListingReservation from '@/app/components/Listings/ListingReservation';
+import useLoginModal from '@/app/hooks/useLoginModal';
 import { categories } from '@/app/components/Navbar/Categories';
-import { Listing, Reservation, User } from '@prisma/client';
 
 const initialDateRange = {
   startDate: new Date(),
