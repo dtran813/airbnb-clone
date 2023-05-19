@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import Button from '../Button';
+import useKeydown from '@/app/hooks/useKeydown';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -59,6 +60,17 @@ const Modal: React.FC<ModalProps> = ({
 
     secondaryAction();
   }, [disabled, secondaryAction]);
+
+  useEffect(() => {
+    function handleEscapeKey(event: KeyboardEvent) {
+      if (event.code === 'Escape') {
+        handleClose();
+      }
+    }
+    window.addEventListener('keydown', handleEscapeKey);
+
+    return () => window.removeEventListener('keydown', handleEscapeKey);
+  }, [handleClose]);
 
   if (!isOpen) {
     return null;
