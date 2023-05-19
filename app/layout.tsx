@@ -11,8 +11,8 @@ import getCurrentUser from './actions/getCurrentUser';
 import Head from 'next/head';
 
 export const metadata = {
-  title: 'AirBnb',
-  description: 'AirBnb clone',
+  title: 'HomeSafari',
+  description: 'An Airbnb clone website',
 };
 
 const font = Nunito({
@@ -28,9 +28,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
-      </Head>
       <body className={font.className}>
         <ToastProvider />
         <SearchModal />
