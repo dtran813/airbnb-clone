@@ -104,13 +104,13 @@ const RegisterModal = () => {
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex flex-row justify-center items-center gap-2">
-          <div>Already have an account?</div>
-          <div
+          <p>Already have an account?</p>
+          <p
             className="text-neutral-800 cursor-pointer hover:underline"
             onClick={toggle}
           >
             Log in
-          </div>
+          </p>
         </div>
       </div>
     </div>
