@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import Button from '../Button';
-import useKeydown from '@/app/hooks/useKeydown';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -78,8 +77,16 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
-        <div className="relative w-full md:w-2/3 lg:w-1/2 xl:w-2/5 h-full md:h-auto my-6 mx-auto">
+      <div
+        className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70"
+        onClick={handleClose} // Close when clicking on backdrop
+      >
+        <div
+          className="relative w-full md:w-2/3 lg:w-1/2 xl:w-2/5 h-full md:h-auto my-6 mx-auto"
+          onClick={(event) => {
+            event.stopPropagation(); // Prevent closing when clicking on the actual modal
+          }}
+        >
           {/* CONTENT */}
           <div
             className={`transform duration-300 h-full ${
