@@ -28,7 +28,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
+        <link
+          rel="icon"
+          href="/public/images/favicon.ico"
+          type="image/x-icon"
+          sizes="any"
+        />
       </head>
       <body className={font.className}>
         <ToastProvider />
