@@ -8,6 +8,7 @@ import SearchModal from './components/Modals/SearchModal';
 import ToastProvider from './providers/ToastProvider';
 
 import getCurrentUser from './actions/getCurrentUser';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'AirBnb',
@@ -27,14 +28,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          href="/public/images/favicon.ico"
-          type="image/x-icon"
-          sizes="any"
-        />
-      </head>
+      <Head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
+      </Head>
       <body className={font.className}>
         <ToastProvider />
         <SearchModal />
