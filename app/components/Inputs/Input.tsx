@@ -45,6 +45,7 @@ const Input: React.FC<InputProps> = ({
             ? 'border-rose-500 focus:border-rose-500'
             : 'border-neutral-300 focus:border-black'
         }`}
+        required={required}
       />
       <label
         htmlFor={id}
