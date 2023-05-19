@@ -70,7 +70,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
       className="col-span-1 cursor-pointer group"
       onClick={() => router.push(`/listings/${data.id}`)}
     >
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-2 mb-2">
         <div className="relative w-full aspect-square rounded-xl overflow-hidden">
           <Image
             fill
@@ -89,7 +89,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
       <p className="font-light text-neutral-500">
         {reservationDate || data.category}
       </p>
-      <div className="mb-1 flex flex-row items-center gap-1">
+      <div className="my-1 flex flex-row items-center gap-1">
         <p className="font-semibold">$ {price}</p>
         {!reservation && <span className="font-light">night</span>}
       </div>
