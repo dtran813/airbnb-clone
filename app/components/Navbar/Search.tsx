@@ -1,10 +1,54 @@
 'use client';
 
 import { BiSearchAlt } from 'react-icons/bi';
+import { useSearchParams } from 'next/navigation';
+
 import useSearchModal from '@/app/hooks/useSearchModal';
+import useCountries from '@/app/hooks/useCountry';
+import { useMemo } from 'react';
+import { differenceInDays } from 'date-fns';
 
 const Search = () => {
   const searchModal = useSearchModal();
+  const params = useSearchParams();
+  const { getByValue } = useCountries();
+
+  const locationValue = params?.get('locationValue');
+  const guestCount = params?.get('guestCount');
+  const startDate = params?.get('startDate');
+  const endDate = params?.get('endDate');
+
+  const locationLabel = useMemo(() => {
+    if (locationValue) {
+      return getByValue(locationValue as string)?.label;
+    }
+
+    return 'Anywhere';
+  }, [locationValue, getByValue]);
+
+  const durationLabel = useMemo(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate as string);
+      const end = new Date(endDate as string);
+      let diff = differenceInDays(end, start);
+
+      if (diff === 0) {
+        diff = 1;
+      }
+
+      return `${diff} Days`;
+    }
+
+    return 'Any Week';
+  }, [startDate, endDate]);
+
+  const guestLabel = useMemo(() => {
+    if (guestCount) {
+      return `${guestCount} Guests`;
+    }
+
+    return 'Add Guests';
+  }, [guestCount]);
 
   return (
     <div
@@ -12,12 +56,12 @@ const Search = () => {
       onClick={searchModal.onOpen}
     >
       <div className="flex flex-row justify-between items-center">
-        <p className="text-sm font-semibold px-6">Anywhere</p>
+        <p className="text-sm font-semibold px-6">{locationLabel}</p>
         <p className="hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center">
-          Any week
+          {durationLabel}
         </p>
         <div className="text-sm pl-6 pr-2 tex-gray-600 flex flex-row items-center gap-3">
-          <p className="hidden sm:block">Add guests</p>
+          <p className="hidden sm:block">{guestLabel}</p>
           <div className="p-2 bg-rose-500 rounded-full text-white">
             <BiSearchAlt size={18} />
           </div>
