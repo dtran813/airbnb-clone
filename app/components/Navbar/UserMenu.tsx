@@ -46,15 +46,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           Airbnb your home
         </p>
-        <div
-          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+        <button
+          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full outline-none cursor-pointer hover:shadow-md transition"
           onClick={toggleOpen}
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
             <Avatar src={currentUser?.image} />
           </div>
-        </div>
+        </button>
       </div>
 
       {isOpen && (
